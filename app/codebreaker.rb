@@ -27,8 +27,8 @@ class Codebreaker
       end
 
       output.puts '' unless contains
-
-
-    end
+      else
+        output.puts "-"
+      end
   end
 end
