@@ -18,10 +18,17 @@ class Codebreaker
 
       output.puts "Try guessing a number with four digits" unless input.length == 4
 
-      # Make sure to replace next line with the actual implemented marking algorithm,
-      # using the @secret_number
+      contains = false
 
-      # output.puts "you typed '#{input}'"
+      input.each_char do |digit|
+        if (@secret_number.include?(digit))
+          contains = true
+        end
+      end
+
+      output.puts '' unless contains
+
+
     end
   end
 end
