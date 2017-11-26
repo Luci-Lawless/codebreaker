@@ -5,10 +5,6 @@ class Codebreaker
 
     def initialize(output)
       @output = output
-      @result = ''
-      @pluses = ''
-      @minuses = ''
-      @matched_numbers = []
     end
 
     def start(secret_number)
@@ -20,8 +16,12 @@ class Codebreaker
 
     def guess(input)
 
-      validate_input_length(input)
+      @result = ''
+      @pluses = ''
+      @minuses = ''
+      @matched_numbers = []
 
+      validate_input_length(input)
 
       input.chars.each_with_index do |input_value, input_index|
         @secret_number.chars.each_with_index do |secret_number_value, secret_number_index|
