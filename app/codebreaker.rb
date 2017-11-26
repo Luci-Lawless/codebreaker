@@ -1,6 +1,7 @@
 class Codebreaker
   class Game
     attr_reader :output
+    MAX_INPUT_LENGTH = 4
 
     def initialize(output)
       @output = output
@@ -15,7 +16,8 @@ class Codebreaker
     end
 
     def guess(input)
-      output.puts "Try guessing a number with four digits" unless input.length == 4
+
+      validate_input_length(input)
 
       result = ''
       pluses = ''
@@ -42,7 +44,14 @@ class Codebreaker
 
       result = pluses + minuses
       output.puts(result)
-      
+
     end
+    
+    private
+
+    def validate_input_length(input)
+      output.puts "Try guessing a number with four digits" unless input.length == MAX_INPUT_LENGTH
+    end
+
   end
 end
