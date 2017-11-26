@@ -20,6 +20,7 @@ class Codebreaker
       result = ''
       pluses = ''
       minuses = ''
+      matched_numbers = []
 
       input.chars.each_with_index do |input_value, input_index|
         @secret_number.chars.each_with_index do |secret_number_value, secret_number_index|
@@ -27,12 +28,15 @@ class Codebreaker
             if input_index == secret_number_index
               pluses += "+"
             else
-              minuses += "-"
+              if !matched_numbers.include?(input_value)
+                minuses += "-"
+                matched_numbers << input_value
+              end
             end
           end
         end
       end
-      
+
       result = pluses + minuses
       output.puts(result)
 
