@@ -20,24 +20,22 @@ class Codebreaker
 
       contains = false
       exact_match = false
+
+      result = ''
+
       input.chars.each_with_index do |input_value, input_index|
         @secret_number.chars.each_with_index do |secret_number_value, secret_number_index|
           if input_value == secret_number_value
-            contains = true
             if input_index == secret_number_index
-              exact_match = true
+              result += "+"
+            else
+              result += "-"
             end
           end
         end
       end
 
-      if exact_match
-        output.puts "+"
-      elsif contains
-        output.puts "-"
-      else
-        output.puts ''
-      end
+      output.puts(result)
 
     end
   end
