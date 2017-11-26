@@ -17,24 +17,23 @@ class Codebreaker
     def guess(input)
       output.puts "Try guessing a number with four digits" unless input.length == 4
 
-
-      contains = false
-      exact_match = false
-
       result = ''
+      pluses = ''
+      minuses = ''
 
       input.chars.each_with_index do |input_value, input_index|
         @secret_number.chars.each_with_index do |secret_number_value, secret_number_index|
           if input_value == secret_number_value
             if input_index == secret_number_index
-              result += "+"
+              pluses += "+"
             else
-              result += "-"
+              minuses += "-"
             end
           end
         end
       end
-
+      
+      result = pluses + minuses
       output.puts(result)
 
     end
