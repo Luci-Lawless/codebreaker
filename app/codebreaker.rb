@@ -5,7 +5,9 @@ class Codebreaker
 
     def initialize(output)
       @output = output
-
+      @result = ''
+      @pluses = ''
+      @minuses = ''
     end
 
     def start(secret_number)
@@ -19,9 +21,7 @@ class Codebreaker
 
       validate_input_length(input)
 
-      result = ''
-      pluses = ''
-      minuses = ''
+
       matched_numbers = []
 
       input.chars.each_with_index do |input_value, input_index|
@@ -29,28 +29,30 @@ class Codebreaker
           if input_value == secret_number_value
             if input_index == secret_number_index
               if !matched_numbers.include?(input_value)
-                pluses += "+"
+                @pluses += "+"
                 matched_numbers << input_value
               end
             else
               if !matched_numbers.include?(input_value)
-                minuses += "-"
+                @minuses += "-"
                 matched_numbers << input_value
               end
             end
           end
         end
       end
-
-      result = pluses + minuses
-      output.puts(result)
-
+      display_result
     end
-    
+
     private
 
     def validate_input_length(input)
       output.puts "Try guessing a number with four digits" unless input.length == MAX_INPUT_LENGTH
+    end
+
+    def display_result
+      @result = @pluses + @minuses
+      output.puts(@result)
     end
 
   end
